@@ -1,0 +1,31 @@
+body {
+  font: 20px "Century Gothic", Futura, sans-serif;
+  margin: 20px;
+}
+
+.search-input {
+  background: #F2F2F2;
+  border: solid 1px #bfbfbf;
+  border-radius: 2px;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 15px;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.search-button {
+  color: white;
+  background: #2C9CDB;
+  border: none;
+  border-radius: 2px;
+  width: 100%;
+  padding: 15px 0;
+  margin-bottom: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  cursor: pointer;
+}
