@@ -23,8 +23,9 @@ export default class Dropdown extends React.Component {
   render() {
     return (
       <div>
-        <div onClick={this.toggleOpen.bind(this)}>
-          {this.props.username} {this.state.open ? <AiOutlineUp /> : <AiOutlineDown />}
+        <div className="dropdown-button" onClick={this.toggleOpen.bind(this)}>
+          <div className="dropdown-button-username">{this.props.username}</div>
+          {this.state.open ? <AiOutlineUp /> : <AiOutlineDown />}
         </div>
         <ul>
           {/* todo add info when no repos */}
