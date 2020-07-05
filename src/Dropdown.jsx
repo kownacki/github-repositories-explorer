@@ -1,6 +1,7 @@
 import React from 'react';
-import {AiFillStar, AiOutlineDown, AiOutlineUp} from 'react-icons/ai';
+import {AiOutlineDown, AiOutlineUp} from 'react-icons/ai';
 import * as github from './github.js';
+import DropdownItem from './DropdownItem.jsx';
 
 export default class Dropdown extends React.Component {
   constructor(props) {
@@ -30,7 +31,7 @@ export default class Dropdown extends React.Component {
         <ul>
           {/* todo add info when no repos */}
           {this.state.open && this.state.repos && this.state.repos.map((repo) =>
-            <li key={repo.id}>{repo.name} <AiFillStar /></li>
+            <li key={repo.id}><DropdownItem repo={repo} /></li>
           )}
         </ul>
       </div>
