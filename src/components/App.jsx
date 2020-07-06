@@ -14,7 +14,7 @@ class App extends React.Component {
   }
   async handleClick() {
     this.props.startSearchForUsers(this.state.searchInputText);
-    const users = await github.getUsers(this.state.searchInputText);
+    const users = await github.getUsers(encodeURIComponent(this.state.searchInputText));
     if (users) {
       this.props.successSearchForUsers(users.map((user) => ({id: user.id, name: user.login})));
     } else {
