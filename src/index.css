@@ -38,6 +38,11 @@ ul {
   cursor: pointer;
 }
 
+.search-button[disabled] {
+  background: var(--light-grey);
+  cursor: auto;
+}
+
 .dropdown-button {
   background: var(--light-grey);
   margin-bottom: 10px;

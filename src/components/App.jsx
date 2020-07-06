@@ -3,12 +3,22 @@ import * as github from '../github.js';
 import SearchResults from './SearchResults.jsx';
 import {connect} from 'react-redux';
 import {failureSearchForUsers, startSearchForUsers, successSearchForUsers} from '../redux/actions.js';
+import {LOADING} from '../redux/actionTypes.js';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       searchInputText: '',
+    }
+  }
+  async handleClick() {
+    this.props.startSearchForUsers(this.state.searchInputText);
+    const result = await github.getUsers(this.state.searchInputText);
+    if (result) {
+      this.props.successSearchForUsers(result);
+    } else {
+      this.props.failureSearchForUsers();
     }
   }
   render() {
@@ -19,16 +29,13 @@ class App extends React.Component {
           onInput={(event) => this.setState({searchInputText: event.target.value})}
           type="text"
         />
-        <button className="search-button" onClick={async () => {
-          this.props.startSearchForUsers(this.state.searchInputText);
-          // todo race condition
-          const result = await github.getUsers(this.state.searchInputText);
-          if (result) {
-            this.props.successSearchForUsers(result);
-          } else {
-            this.props.failureSearchForUsers();
-          }
-        }}>Search</button>
+        <button
+          className="search-button"
+          disabled={this.props.reduxState.type === LOADING}
+          onClick={this.handleClick.bind(this)}
+        >
+          Search
+        </button>
         <SearchResults />
       </div>
     );

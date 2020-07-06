@@ -21,8 +21,6 @@ function appReducer(state = initialState, action) {
     case FAILURE:
       return {
         type: FAILURE,
-        error: action.error,
-        query: state.query,
       };
     default:
       return state;
