@@ -23,7 +23,7 @@ class App extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className="app">
         <input
           className="search-input"
           placeholder="Enter username"

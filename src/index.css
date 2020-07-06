@@ -11,6 +11,11 @@ ul {
   padding: 0;
 }
 
+.app {
+  margin: auto;
+  max-width: 700px;
+}
+
 .search-input {
   background: var(--light-grey);
   border: solid 1px var(--dark-grey);
