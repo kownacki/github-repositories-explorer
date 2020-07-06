@@ -26,12 +26,13 @@ class App extends React.Component {
       <div>
         <input
           className="search-input"
+          placeholder="Enter username"
           onInput={(event) => this.setState({searchInputText: event.target.value})}
           type="text"
         />
         <button
           className="search-button"
-          disabled={this.props.reduxState.type === LOADING}
+          disabled={!this.state.searchInputText || this.props.reduxState.type === LOADING}
           onClick={this.handleClick.bind(this)}
         >
           Search
