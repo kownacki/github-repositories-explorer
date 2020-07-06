@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {LOADING, SUCCESS, FAILURE} from './redux/actionTypes.js';
+import {LOADING, SUCCESS, FAILURE} from '../redux/actionTypes.js';
 import Dropdown from './Dropdown.jsx';
 
 class SearchResults extends React.Component {

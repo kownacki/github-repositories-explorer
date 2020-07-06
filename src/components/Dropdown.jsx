@@ -1,6 +1,6 @@
 import React from 'react';
 import {AiOutlineDown, AiOutlineUp} from 'react-icons/ai';
-import * as github from './github.js';
+import * as github from '../github.js';
 import DropdownItem from './DropdownItem.jsx';
 
 export default class Dropdown extends React.Component {
