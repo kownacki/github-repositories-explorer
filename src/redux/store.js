@@ -2,7 +2,7 @@ import {createStore} from 'redux';
 import {NONE, LOADING_USERS, SUCCESS_USERS, FAILURE_USERS, LOADING_REPOS, SUCCESS_REPOS, FAILURE_REPOS} from './actionTypes.js';
 
 const initialState = {
-  type: NONE,
+  usersStatus: NONE,
 };
 
 function appReducer(state = initialState, action) {

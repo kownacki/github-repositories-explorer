@@ -32,7 +32,7 @@ class App extends React.Component {
         />
         <button
           className="search-button"
-          disabled={!this.state.searchInputText || this.props.reduxState.type === LOADING_USERS}
+          disabled={!this.state.searchInputText || this.props.reduxState.usersStatus === LOADING_USERS}
           onClick={this.handleClick.bind(this)}
         >
           Search
