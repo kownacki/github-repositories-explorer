@@ -1,33 +1,31 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {LOADING, SUCCESS, FAILURE} from './redux/actionTypes.js';
 import Dropdown from './Dropdown.jsx';
-import * as github from './github.js';
 
-export default class SearchResults extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      users: null,
-    }
-  }
-  async componentDidUpdate(prevProps) {
-    if (this.props.searchQuery !== prevProps.searchQuery) {
-      const query = this.props.searchQuery.replace(' ', '+');
-      // todo race condition
-      this.setState({users: await github.getUsers(query)});
-    }
-  }
+class SearchResults extends React.Component {
   render() {
     return (
       <div>
-        Showing users for "{this.props.searchQuery}"
-        <ul>
-          {this.state.users && this.state.users.map((user) =>
-            // todo how about username instead of login ??
-            <li key={user.id}><Dropdown username={user.login}  /></li>
-          )}
-        </ul>
-        <br />
+        {this.props.reduxState.type === LOADING
+          ? <>Loading users for "{this.props.reduxState.query}"</>
+          : this.props.reduxState.type === SUCCESS
+          ? <>
+              Showing users for "{this.props.reduxState.query}"
+              <ul>
+                {this.props.reduxState.users && this.props.reduxState.users.map((user) =>
+                  // todo how about username instead of login ??
+                  <li key={user.id}><Dropdown username={user.login}  /></li>
+                )}
+              </ul>
+            </>
+          : this.props.reduxState.type === FAILURE
+          ? 'Something went wrong when fetching data. Try again in a minute'
+          : ''
+        }
       </div>
     );
   }
 }
+
+export default connect((state) => ({reduxState: state}), {})(SearchResults);

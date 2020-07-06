@@ -1,6 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Provider, connect} from 'react-redux'
 import './index.css';
+import * as github from './github.js';
+import store from './redux/store.js';
+import {startSearchForUsers, successSearchForUsers, failureSearchForUsers} from './redux/actions.js'
 import SearchResults from './SearchResults.jsx';
 
 class App extends React.Component {
@@ -8,7 +12,6 @@ class App extends React.Component {
     super(props);
     this.state = {
       searchInputText: '',
-      lastSearchQuery: '',
     }
   }
   render() {
@@ -20,17 +23,29 @@ class App extends React.Component {
           type="text"
         />
         <button className="search-button" onClick={async () => {
-          this.setState({lastSearchQuery: this.state.searchInputText});
+          this.props.startSearchForUsers(this.state.searchInputText);
+          // todo race condition
+          const result = await github.getUsers(this.state.searchInputText);
+          if (result) {
+            this.props.successSearchForUsers(result);
+          } else {
+            this.props.failureSearchForUsers();
+          }
         }}>Search</button>
-        <SearchResults
-          searchQuery={this.state.lastSearchQuery}
-        />
+        <SearchResults />
       </div>
     );
   }
 }
 
+const ConnectedApp = connect(
+  (state) => ({reduxState: state}),
+  {startSearchForUsers, successSearchForUsers, failureSearchForUsers},
+)(App);
+
 ReactDOM.render(
-  <App />,
+  <Provider store={store}>
+    <ConnectedApp />
+  </Provider>,
   document.getElementById('root')
 );
