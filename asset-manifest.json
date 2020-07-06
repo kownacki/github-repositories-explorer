@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/github-repositories-explorer/static/css/main.718904ef.chunk.css",
-    "main.js": "/github-repositories-explorer/static/js/main.2e7f35b2.chunk.js",
-    "main.js.map": "/github-repositories-explorer/static/js/main.2e7f35b2.chunk.js.map",
+    "main.js": "/github-repositories-explorer/static/js/main.8b2592fd.chunk.js",
+    "main.js.map": "/github-repositories-explorer/static/js/main.8b2592fd.chunk.js.map",
     "runtime-main.js": "/github-repositories-explorer/static/js/runtime-main.8ca795ae.js",
     "runtime-main.js.map": "/github-repositories-explorer/static/js/runtime-main.8ca795ae.js.map",
     "static/js/2.525a8a0f.chunk.js": "/github-repositories-explorer/static/js/2.525a8a0f.chunk.js",
     "static/js/2.525a8a0f.chunk.js.map": "/github-repositories-explorer/static/js/2.525a8a0f.chunk.js.map",
     "index.html": "/github-repositories-explorer/index.html",
-    "precache-manifest.fc599c4785d64d79470b7e921b5fa889.js": "/github-repositories-explorer/precache-manifest.fc599c4785d64d79470b7e921b5fa889.js",
+    "precache-manifest.a3552872749b6193b2ff65d3ef0a45ce.js": "/github-repositories-explorer/precache-manifest.a3552872749b6193b2ff65d3ef0a45ce.js",
     "service-worker.js": "/github-repositories-explorer/service-worker.js",
     "static/css/main.718904ef.chunk.css.map": "/github-repositories-explorer/static/css/main.718904ef.chunk.css.map",
     "static/js/2.525a8a0f.chunk.js.LICENSE.txt": "/github-repositories-explorer/static/js/2.525a8a0f.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.8ca795ae.js",
     "static/js/2.525a8a0f.chunk.js",
     "static/css/main.718904ef.chunk.css",
-    "static/js/main.2e7f35b2.chunk.js"
+    "static/js/main.8b2592fd.chunk.js"
   ]
 }
