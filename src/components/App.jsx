@@ -3,7 +3,7 @@ import * as github from '../github.js';
 import SearchResults from './SearchResults.jsx';
 import {connect} from 'react-redux';
 import {failureSearchForUsers, startSearchForUsers, successSearchForUsers} from '../redux/actions.js';
-import {LOADING} from '../redux/actionTypes.js';
+import {LOADING_USERS} from '../redux/actionTypes.js';
 
 class App extends React.Component {
   constructor(props) {
@@ -14,9 +14,9 @@ class App extends React.Component {
   }
   async handleClick() {
     this.props.startSearchForUsers(this.state.searchInputText);
-    const result = await github.getUsers(this.state.searchInputText);
-    if (result) {
-      this.props.successSearchForUsers(result);
+    const users = await github.getUsers(this.state.searchInputText);
+    if (users) {
+      this.props.successSearchForUsers(users.map((user) => ({id: user.id, name: user.login})));
     } else {
       this.props.failureSearchForUsers();
     }
@@ -32,7 +32,7 @@ class App extends React.Component {
         />
         <button
           className="search-button"
-          disabled={!this.state.searchInputText || this.props.reduxState.type === LOADING}
+          disabled={!this.state.searchInputText || this.props.reduxState.type === LOADING_USERS}
           onClick={this.handleClick.bind(this)}
         >
           Search

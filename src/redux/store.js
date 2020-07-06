@@ -1,5 +1,5 @@
 import {createStore} from 'redux';
-import {NONE, LOADING, SUCCESS, FAILURE} from './actionTypes.js';
+import {NONE, LOADING_USERS, SUCCESS_USERS, FAILURE_USERS, LOADING_REPOS, SUCCESS_REPOS, FAILURE_REPOS} from './actionTypes.js';
 
 const initialState = {
   type: NONE,
@@ -7,21 +7,49 @@ const initialState = {
 
 function appReducer(state = initialState, action) {
   switch (action.type) {
-    case LOADING:
+    case LOADING_USERS:
       return {
-        type: LOADING,
+        usersStatus: LOADING_USERS,
         query: action.query,
       };
-    case SUCCESS:
+    case SUCCESS_USERS:
       return {
-        type: SUCCESS,
+        usersStatus: SUCCESS_USERS,
         users: action.users,
         query: state.query,
       };
-    case FAILURE:
+    case FAILURE_USERS:
       return {
-        type: FAILURE,
+        usersStatus: FAILURE_USERS,
       };
+    case LOADING_REPOS: {
+      return {
+        ...state,
+        users: state.users.map((user) => user.id === action.userID ? {
+          ...user,
+          reposStatus: LOADING_REPOS,
+        } : user),
+      }
+    }
+    case SUCCESS_REPOS: {
+      return {
+        ...state,
+        users: state.users.map((user) => user.id === action.userID ? {
+          ...user,
+          reposStatus: SUCCESS_REPOS,
+          repos: action.repos
+        } : user),
+      }
+    }
+    case FAILURE_REPOS: {
+      return {
+        ...state,
+        users: state.users.map((user) => user.id === action.userID ? {
+          ...user,
+          reposStatus: FAILURE_REPOS,
+        } : user),
+      }
+    }
     default:
       return state;
   }

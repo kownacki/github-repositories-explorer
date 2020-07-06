@@ -3,5 +3,7 @@ export const getUsers = async (query) => {
   return response.status === 200 ? (await response.json()).items : false;
 };
 
-export const getRepos = async (username) =>
-  (await fetch(`https://api.github.com/users/${username}/repos`)).json();
+export const getRepos = async (username) => {
+  const response = await fetch(`https://api.github.com/users/${username}/repos`);
+  return response.status === 200 ? await response.json() : false;
+};
