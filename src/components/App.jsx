@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash/fp';
 import * as github from '../github.js';
 import SearchResults from './SearchResults.jsx';
 import {connect} from 'react-redux';
@@ -32,7 +33,7 @@ class App extends React.Component {
         />
         <button
           className="search-button"
-          disabled={!this.state.searchInputText || this.props.reduxState.usersStatus === LOADING_USERS}
+          disabled={!this.state.searchInputText || this.props.usersStatus === LOADING_USERS}
           onClick={this.handleClick.bind(this)}
         >
           Search
@@ -44,6 +45,6 @@ class App extends React.Component {
 }
 
 export default connect(
-  (state) => ({reduxState: state}),
+  _.pick(['usersStatus']),
   {startSearchForUsers, successSearchForUsers, failureSearchForUsers},
 )(App);

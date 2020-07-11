@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash/fp';
 import {AiOutlineDown, AiOutlineUp} from 'react-icons/ai';
 import * as github from '../github.js';
 import DropdownItem from './DropdownItem.jsx';
@@ -30,7 +31,7 @@ class Dropdown extends React.Component {
     }
   }
   render() {
-    const userState = this.props.reduxState.users[this.props.index];
+    const userState = this.props.users[this.props.index];
     return (
       <div>
         <div className="dropdown-button" onClick={this.handleClick.bind(this)}>
@@ -63,6 +64,6 @@ class Dropdown extends React.Component {
 }
 
 export default connect(
-  (state) => ({reduxState: state}),
+  _.pick(['users']),
   {startFetchRepos, successFetchRepos, failureFetchRepos},
 )(Dropdown);

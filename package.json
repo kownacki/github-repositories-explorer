@@ -2,6 +2,7 @@
   "name": "github-repositories-explorer",
   "private": true,
   "dependencies": {
+    "lodash": "^4.17.19",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-icons": "^3.10.0",
